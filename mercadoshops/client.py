@@ -13,8 +13,7 @@ class Client(object):
             'refresh_token': refresh_token
         }
         token_response = self._post('/oauth/token', params=params)
-        if token_response.status_code == 200:
-            self.access_token = token_response.json.get('access_token')
+        self.access_token = token_response['access_token']
 
     def user_info (self, params=None):
         """List of customers which match a specified criteria. This call returns an array of objects.
