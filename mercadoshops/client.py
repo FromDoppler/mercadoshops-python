@@ -67,10 +67,15 @@ class Client(object):
 
     def _request(self, method, endpoint, headers=None, **kwargs):
         _headers = {
-            'Authorization': 'Bearer ' + self.access_token,
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         }
+
+        if(self.access_token):
+            _headers.update({
+                'Authorization': 'Bearer ' + self.access_token,
+            })
+
         if headers:
             _headers.update(headers)
         return self._parse(requests.request(method, self.base_url + endpoint, headers=_headers, **kwargs))
