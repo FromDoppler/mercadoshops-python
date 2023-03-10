@@ -5,6 +5,7 @@ from mercadoshops import exceptions
 class Client(object):
     def __init__(self, client_id, client_secret, refresh_token):
         self.base_url = 'https://api.mercadolibre.com'
+        self.access_token = None
         params = {
             'grant_type': 'refresh_token',
             'client_id': client_id,
@@ -67,14 +68,10 @@ class Client(object):
 
     def _request(self, method, endpoint, headers=None, **kwargs):
         _headers = {
+            'Authorization': 'Bearer ' + self.access_token,
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         }
-
-        if(self.access_token):
-            _headers.update({
-                'Authorization': 'Bearer ' + self.access_token,
-            })
 
         if headers:
             _headers.update(headers)
