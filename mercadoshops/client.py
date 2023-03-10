@@ -16,7 +16,7 @@ class Client(object):
         Returns:
 
         """
-        return self._get('users/me', params=params)
+        return self._get('/users/me', params=params)
 
     def customers_list(self, params=None):
         """List of customers which match a specified criteria. This call returns an array of objects.
@@ -27,7 +27,7 @@ class Client(object):
         Returns:
 
         """
-        return self._get('shops/cda/customers', params=params)
+        return self._get('/shops/cda/customers', params=params)
 
     def products_list(self, site_id, params=None):
         """List of products that match specified search criteria. This call returns an array of objects
@@ -49,7 +49,7 @@ class Client(object):
         Returns:
 
         """
-        return self._get('shops/cda/customers', params=params)
+        return self._get('/shops/cda/customers', params=params)
 
     def _get(self, url, **kwargs):
         return self._request('GET', url, **kwargs)
