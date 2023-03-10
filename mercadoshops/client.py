@@ -5,7 +5,7 @@ from mercadoshops import exceptions
 class Client(object):
     def __init__(self, client_id, client_secret, refresh_token):
         self.base_url = 'https://api.mercadolibre.com'
-        self.access_token = None
+        self.access_token = ''
         params = {
             'grant_type': 'refresh_token',
             'client_id': client_id,
