@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+mercadoshops/__init__.py
+mercadoshops/client.py
+mercadoshops/exceptions.py
+mercadoshops_python.egg-info/PKG-INFO
+mercadoshops_python.egg-info/SOURCES.txt
+mercadoshops_python.egg-info/dependency_links.txt
+mercadoshops_python.egg-info/not-zip-safe
+mercadoshops_python.egg-info/requires.txt
+mercadoshops_python.egg-info/top_level.txt
