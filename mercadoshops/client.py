@@ -3,9 +3,17 @@ from mercadoshops import exceptions
 
 
 class Client(object):
-    def __init__(self, access_token):
+    def __init__(self, client_id, client_secret, refresh_token):
         self.base_url = 'https://api.mercadolibre.com'
-        self.access_token = access_token
+        params = {
+            'grant_type': 'refresh_token',
+            'client_id': client_id,
+            'client_secret': client_secret,
+            'refresh_token': refresh_token
+        }
+        token_response = self._post('/oauth/token', params=params)
+        if token_response.status_code == 200:
+            self.access_token = token_response.json.get('access_token')
 
     def user_info (self, params=None):
         """List of customers which match a specified criteria. This call returns an array of objects.
@@ -53,6 +61,9 @@ class Client(object):
 
     def _get(self, url, **kwargs):
         return self._request('GET', url, **kwargs)
+    
+    def _post(self, url, **kwargs):
+        return self._request('POST', url, **kwargs)
 
     def _request(self, method, endpoint, headers=None, **kwargs):
         _headers = {
